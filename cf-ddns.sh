@@ -1,5 +1,5 @@
 #!/bin/bash
-
+#cloufdflare dynanamic IP updated
 #
 email="a@b.com"
 key="4324723FAKE43542342"

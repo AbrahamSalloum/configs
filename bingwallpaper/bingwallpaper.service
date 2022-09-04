@@ -1,0 +1,15 @@
+[Unit]
+Requires=network.target display-manager.service
+After=network.target display-manager.service 
+
+
+[Service]
+User=abraham
+Group=abraham
+Environment="DISPLAY=:0"
+ExecStart=
+ExecStart=/home/abraham/bingwpdl.sh
+Type=forking
+ 
+[Install]
+WantedBy=graphical.target

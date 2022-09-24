@@ -1,9 +1,9 @@
 [Unit]
-Description=Run bing wallapper hourly
+Description=Run bing wallapper daily
 
 [Timer]
-OnCalendar=hourly
-Persistent=true
+OnCalendar=daily
+Persistent=true #Realtime timer
 
 [Install]
 WantedBy=timers.target

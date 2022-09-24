@@ -1,15 +1,15 @@
 [Unit]
-Requires=network.target display-manager.service
-After=network.target display-manager.service 
-
+Requires=network-online.target
+After=graphical-session.target
 
 [Service]
 User=abraham
 Group=abraham
 Environment="DISPLAY=:0"
+Environment="XAUTHORITY=/home/abraham/.Xauthority"
 ExecStart=
 ExecStart=/home/abraham/bingwpdl.sh
 Type=forking
- 
+
 [Install]
-WantedBy=graphical.target
+WantedBy=default.target

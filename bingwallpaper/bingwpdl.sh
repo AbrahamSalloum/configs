@@ -14,7 +14,7 @@ export DBUS_SESSION_BUS_ADDRESS="${DBUS_SESSION_BUS_ADDRESS:-unix:path=/run/user
 fullfilepath=${savepath}/${filename}  
 if [ -f $fullfilepath ]; then 
 	echo "exists"
-	/usr/bin/notify-send "Wallpaper UNChanged"
+#	/usr/bin/notify-send "Wallpaper UNChanged"
 else
 	wget -O $fullfilepath "bing.com${urlpath}"
 	#set on both monitors

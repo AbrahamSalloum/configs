@@ -11,14 +11,13 @@ def resize():
     
     def save(new_height, new_width=None, aspect_ratio=None, appendString=""):
 
-        if aspect_ratio is not None:
-            new_width = new_height * aspect_ratio
+        if new_width is not None:
+            new_width = new_width
         else:
-            if new_width is not None:
-                new_width = new_width
-            else:
+            if aspect_ratio is not None:
+                new_width = new_height * aspect_ratio
+            else: 
                 return "Either Specify aspect_ratio or new_width, new_width takes precedence"
-            
 
         imResize = im.resize((int(new_width),int(new_height)), resample)
         imResize.save(f + appendString+".jpg", 'JPEG',  quality=quality)

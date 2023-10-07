@@ -1,0 +1,130 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            img {
+                width: 100%; 
+                height:100%;
+    		object-fit: scale-down;
+                
+            }
+            body {
+                
+               font-family: 'Courier New', Courier, monospace; 
+              
+            }
+            .content {
+                max-width: 1240px;
+                margin: auto;
+            }
+        </style>
+	</head>
+    <body>
+        <div class="content">
+        <h1>How to make a wireless N64 controller work on retropie (and similar)</h1>
+        <p>
+            This will only work if retroarch detects the Nintendo 64 controller as a Xbox 360 controller. <br>
+            This is tested with <a target="_blank" href="https://batocera.org/">batocera</a> in mind but all these emulator systems use retroarch so they will be similar.<br>
+        </p>
+        <hr>
+        The Basic Idea is that you map the buttons on your N64 inspired controller (which retroarch thinks is an Xbox 360 controller) to a predefined configuration AND THEN map those pseudo xbox 360 buttons in the individual N64 emulators (mupens64plus and libretro:mupens64plus-Next)
+        <hr>
+        The controller I have is currently (October 2023) readily <a target="_blank" href="https://web.archive.org/web/20231007071248/https://www.ebay.com.au/itm/385554899405">found</a> on ebay.
+        <table>
+            <tr><td colspan=2 style="text-align:center;"><img style="width:50%;" src="s-l1600.jpg"></td></tr>
+            <tr><td><img src="controller_front.jpg"></td><td><img src="controller_back.jpg"></tr>
+            <tr><td style="text-align:right;"><a target="_blank" href="controller_front.jpg">Enlarge</a></td><td  style="text-align:right;"><a target="_blank"  href="controller_back.jpg">Enlarge</a></td></tr>
+        </table>
+        <br>
+        I have no idea what the numbers in the table on the instruction pamphlet mean.
+        <h2>Instructions</h2>
+        <hr>
+        My particular controller needs to be put in X-input mode for retroarch to detect it, to do this i hold "Start+B" for 3 seconds until two out of the four LEDS on the controller turn red. You might need to do this too. <br>
+        Then: Go into the main menu, go to the controller settings area and select controller mapping and map to the following configuration:
+        <hr>
+        <table>
+            <tr><td><img src="1.jpg"></td></tr>
+            <tr><td><img src="2.jpg"></td></tr>
+            <tr><td><img src="3.jpg"></td></tr>
+            <tr><td>This is the settings for my controller:</td></tr>
+            <tr><td><img src="4.jpg"></td></tr>
+            <tr><td><img src="5.jpg"></td></tr>
+        </table>
+        <p>
+            The number buttons may be different depending on your controller but as long as the right physical button location is mapped to the right pseudo xbox360 controller button it will be OK. <br>
+           <br>
+            Once you have mapped the controller as above, go into the folder:
+            <pre>/userdata/system/configs/mupen64</pre>
+            And replace the contents of input.xml with this (make a backup):
+                        
+        
+        </p>
+        <table>
+            <tr><td>
+<xmp>
+<inputList>
+    <input name="AnalogDeadzone" value="0,0" />
+    <input name="AnalogPeak"     value="32768,32768" />
+    <input name="l3"             value="Mempak switch" />
+    <input name="r3"             value="Rumblepak switch" />
+    <input name="a"        	     value="A Button" />
+    <input name="b"        	     value="B Button" />
+    <input name="x"        	     value="C Button U" />
+    <input name="y"        	     value="C Button L" />
+    <input name="start"    	     value="Start" />
+    <input name="select"   	     value="C Button D" />
+    <input name="pageup"   	     value="L Trig" />
+    <input name="pagedown" 	     value="R Trig" />
+    <input name="l2"       	     value="Z Trig" />
+    <input name="r2"       	     value="C Button R" />
+    <input name="up"       	     value="DPad U" />
+    <input name="down"     	     value="DPad D" />
+    <input name="right"    	     value="DPad R" />
+    <input name="left"     	     value="DPad L" />
+    <input name="joystick1up"    value="Y Axis" />
+    <input name="joystick1down"  value="Y Axis" />
+    <input name="joystick1left"  value="X Axis" />
+    <input name="joystick1right" value="X Axis" />
+    <input name="joystick2up"    value="C Button U" />
+    <input name="joystick2down"  value="C Button D" />
+    <input name="joystick2left"  value="C Button L" />
+    <input name="joystick2right" value="C Button R" />
+</inputList>
+</xmp>
+        </td></tr>
+        </table>
+        <p>
+            The non mupens64plus emulator should now be configured properly.<br><br>
+            For the "libretro: libretro:mupens64plus-Next" emulator, open up the Nintendo 64 game list and select advanced options, change the emulator to "libretro:mupens64plus-Next" and then launch any game:
+        </p>
+        <table>
+            <tr><td><img src="6.jpg"></td></tr>
+            <tr><td><img src="7.jpg"></td></tr>
+        </table>
+        <p>
+            Once you have launched a game with the the libretro emulator, press the appropriate hotkey to get into the libretro menu system (for me it is "home+B").<br><br>
+
+            And then navigate to "controls > port 1 Controls" and configure the controller to have the following buttons. Remember, retroarch thinks a xbox 360 controller is plugged in:            
+        </p>
+        <table>
+            <tr><td><img src="8.jpg"></td></tr>
+            <tr><td><img src="9.jpg"></td></tr>
+            <tr><td>This is what your pseudo xbox 360 controller should be mapped to: </td></tr>
+            <tr><td><img src="10.jpg"></td></tr>
+            <tr><td><img src="11.jpg"></td></tr>
+            <tr><td><img src="12.jpg"></td></tr>
+        </table>     
+        <p>
+            Once you have mapped these buttons, select "manage Remap file" and select "Save Core Remap File" to apply these settings to all games. <br> You may need to save it as a Game Remap file first and/or delete any existing map files:
+        </p>   
+        <table>
+        <tr><td><img src="13.jpg"></td></tr>
+        <tr><td><img src="14.jpg"></td></tr>
+    </table>
+    <p>
+        Once you have done that, go back to the Nintendo game list, select "advanced option" and change the preferred emulator back to "auto". the controller should work as expected. 
+
+    </p>
+    </div>
+    </body>
+    </html>

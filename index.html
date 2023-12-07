@@ -1,0 +1,75 @@
+<html>
+
+<head>
+    <style>
+        .triangle-left {
+            width: 0px;
+            height: 0px;
+            border: 15px solid;
+            border-top-color: transparent;
+            border-left-color: transparent;
+            border-right-color: lightblue;
+            border-bottom-color: transparent;
+        }
+
+        .triangle-right {
+            width: 0px;
+            height: 0px;
+            border: 15px solid;
+            border-top-color: transparent;
+            border-left-color: #3844ca;
+            border-right-color: transparent;
+            border-bottom-color: transparent;
+
+        }
+
+        .triangle-right-prog {
+            width: 0px;
+            height: 0px;
+            border: 15px solid;
+            border-top-color: transparent;
+            border-left-color: lightblue;
+            border-right-color: transparent;
+            border-bottom-color: transparent;
+            background: #3844ca !important;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+
+        <div>
+            <h1>Visible Populations</h1>
+            <div style="display: flex;">
+
+                <div style="display:flex;height:10px;width:100%;height:30px;background:#3844ca;">
+                    <div
+                        style="width:30%;height:30px;background:lightblue;position:absolute;display:flex;align-items: center;">
+                        <div style="display:flex;width: 100%;">
+                            <div style="left:0%;width:fit-content;position: relative;">🟣</div>
+                            <div style="left:15%;width:fit-content;position: relative;">🟣</div>
+                            <div style="left:35%;width:fit-content;position: relative;">🟣</div>
+                            <div style="left:75%;width:fit-content;position: relative;">🟣</div>
+                        </div>
+                        <div style="margin-left: auto">
+                            <div class="triangle-right-prog"></div>
+                        </div>
+
+
+
+                    </div>
+
+
+                </div>
+
+                <div class="triangle-right"></div>
+            </div>
+            <div style="width:100%;display: flex;justify-content: space-between;">
+                <div>opaque</div>
+                <div>clarity</div>
+            </div>
+        </div>
+    </div>
+</body>

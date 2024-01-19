@@ -1,7 +1,8 @@
 from PIL import Image
-import os, sys
+import os
 
 path = os.getcwd()+'\\images\\'
+output = path + "\\output\\"
 print(path)
 dirs = os.listdir( path )
 quality = 80
@@ -20,7 +21,7 @@ def resize():
                 return "Either Specify aspect_ratio or new_width, new_width takes precedence"
 
         imResize = im.resize((int(new_width),int(new_height)), resample)
-        imResize.save(f + appendString+".jpg", 'JPEG',  quality=quality)
+        imResize.save(output+os.path.basename(filepath) + appendString+".jpg", 'JPEG',  quality=quality)
         return 
 
 
@@ -29,11 +30,10 @@ def resize():
         if os.path.isfile(path+item):
             
             im = Image.open(path+item)
-            f, e = os.path.splitext(path+item)
-            
+            filepath = im.filename
             aspect_ratio = im.width / im.height 
             new_height = 1080
-            save(new_height, None, aspect_ratio, "_1080")
+            save(new_height, None, aspect_ratio, "")
             new_height = 500   
             save(new_height, None, aspect_ratio, "_500")
             new_height = 125    

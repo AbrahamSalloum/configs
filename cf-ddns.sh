@@ -1,12 +1,15 @@
 #!/bin/bash
-#cloufdflare dynanamic IP updated
-#
-email="a@b.com"
-key="4324723FAKE43542342"
+
+# cf email 
+email="mail@email.com"
+#global cf apikey
+key="bfFAKE1928354903F4KE945ad5" 
 zone="domain.com"
-record="sub.domain.com"
+records=("sum.domain.com")
 #
 
+for record in "${records[@]}"
+do
 
 for opt in "$@"; do
 	case $opt in 
@@ -21,6 +24,8 @@ done
 
 ipaddr=$(dig TXT +short o-o.myaddr.l.google.com @ns1.google.com | awk -F'"' '{ print $2}')
 cfarec=$(dig $record +short)
+
+
 if [ "$force" != 1 ]; then
 	if [ "$ipaddr" == "$cfarec" ]; then 
 		echo "IP $ipaddr unchanged"
@@ -38,18 +43,21 @@ if [ "$updateip" == 1 ]; then
 		-H "X-Auth-Email: $email" \
 		-H "X-Auth-Key: $key" \
 		-H "Content-Type: application/json")
+	
 	zid=$(echo $zidreq | grep -Po '(?<="id":")[^"]*' | head -1)
+	
 	ridreq=$(curl -sSX GET "https://api.cloudflare.com/client/v4/zones/$zid/dns_records?name=$record" \
 		-H "X-Auth-Email: $email" \
 		-H "X-Auth-Key: $key" \
 		-H "Content-Type: application/json") 
 	rid=$(echo $ridreq | grep -Po '(?<="id":")[^"]*')
-	echo "$rid"
+	
 	update=$(curl -sSX PUT "https://api.cloudflare.com/client/v4/zones/$zid/dns_records/$rid" \
      	-H "X-Auth-Email: $email" \
      	-H "X-Auth-Key: $key" \
      	-H "Content-Type: application/json" \
      	--data '{"type":"A","name":"'${record}'","content":"'${ipaddr}'","ttl":120,"proxied":false}')
+	echo $update
 fi
 
 if [ "$log" == 1 ]; then
@@ -65,6 +73,6 @@ if [ "$log" == 1 ]; then
 	printf "\n\nSee file: ~/log-cfddns for details\n\n" 
 	exit 0
 fi
-
+done
 printf "$update"
 exit 0

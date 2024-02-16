@@ -21,7 +21,7 @@ def resize():
                 return "Either Specify aspect_ratio or new_width, new_width takes precedence"
 
         imResize = im.resize((int(new_width),int(new_height)), resample)
-        imResize.save(output+os.path.basename(filepath) + appendString+".jpg", 'JPEG',  quality=quality)
+        imResize.save(output+os.path.splitext(os.path.basename(filepath))[0] + appendString+".jpg", 'JPEG',  quality=quality)
         return 
 
 
